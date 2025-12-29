@@ -1,29 +1,14 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-
+import { Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Contact from "./Contact";
+Contact
 function App() {
-  const [count, setCount] = useState(0)
-//  Run on every render 
-
-
-useEffect(() => {
-
-   fetch('https://jsonplaceholder.typicode.com/posts')
-   .then(response => response.json())
-   .then(data => console.log(data))
-})
-
-  useEffect(() => {
-    console.log("useEffect called")
-  }, [count]) // runs once when component mounts
-
   return (
-    <>
-      <h1>Hello useEffect</h1>
-       <h2>{count}</h2>
-        <button onClick={()=>(setCount(count+1))}>increase</button>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Home />} />
+       <Route path="/contact" element={<Contact />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
