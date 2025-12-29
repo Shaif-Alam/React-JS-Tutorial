@@ -1,17 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 
-
 function App() {
- const[count,setCount]= useState(0)
+  const [count, setCount] = useState(0)
+//  Run on every render 
+
+
+useEffect(() => {
+
+   fetch('https://jsonplaceholder.typicode.com/posts')
+   .then(response => response.json())
+   .then(data => console.log(data))
+})
+
+  useEffect(() => {
+    console.log("useEffect called")
+  }, [count]) // runs once when component mounts
+
   return (
     <>
-<h1>Count: count : {count}</h1>
-<button onClick={()=>{
-   setCount(count+1)
-}}>Increase</button>
+      <h1>Hello useEffect</h1>
+       <h2>{count}</h2>
+        <button onClick={()=>(setCount(count+1))}>increase</button>
     </>
   )
 }
